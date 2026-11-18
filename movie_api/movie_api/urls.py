@@ -27,6 +27,8 @@ urlpatterns = [
     path('detail/<int:i>',views.MovieDetail.as_view()),
     path('update/<int:i>',views.MovieUpdate.as_view()),
     path('partial/<int:i>',views.MoviePartialUpdate.as_view()),
-    path('delete/<int:i>',views.MovieDelete.as_view())
+    path('delete/<int:i>',views.MovieDelete.as_view()),
+    path('search',views.SearchAPIView.as_view()),
+    path('register',views.RegisterView.as_view())
 
 ]

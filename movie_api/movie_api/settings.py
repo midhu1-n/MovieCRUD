@@ -52,6 +52,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Example: Gmail SMTP server
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'midhunmp493@gmail.com'  # Your email address
+EMAIL_HOST_PASSWORD = 'uceangmgoedqdcmp' # Your email password (use app)
+
 
 ROOT_URLCONF = 'movie_api.urls'
 import os

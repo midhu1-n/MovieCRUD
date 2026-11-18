@@ -133,7 +133,7 @@ class EmployeeUpdate(APIView):
 
 #apiview for updating(fully) existing employee record
 class EmployeePartialUpdate(APIView):
-    def patch(selfself,request,i):
+    def patch(self,request,i):
         #reads the record matching with id
         e=get_object_or_404(Employee,id=i)
         #fetches the data coming from client

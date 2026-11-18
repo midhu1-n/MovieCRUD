@@ -23,6 +23,7 @@ from app.models import models,Employee
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from app.serializers import EmployeeSerializer
+from rest_framework import status
 
 # class EmployeeList(APIView):
 #     def get(self,request):
@@ -197,3 +198,33 @@ class EmployeePartialUpdate(mixins.UpdateModelMixin,generics.GenericAPIView):
     serializer_class = EmployeeSerializer
     def patch(self,request,pk):
         return self.partial_update(request,pk)
+
+from django.db.models import Q
+#Search apiview
+class SearchAPIView(APIView):
+    def get(self,request):
+       #fetches the keyword from query parameters
+        data=request.query_params.get('search')
+        print(data)
+
+       #Read all records matching with the keyword from db table(using filter)
+        m=Employee.objects.filter(Q(name__icontains=data)    |
+                               Q(place__icontains=data) |
+                               Q(designation__icontains=data))
+
+        #call Serializer class for Serialization
+        serializer_instance=EmployeeSerializer(m,many=True)
+
+        #return Response back to client
+        return Response(serializer_instance.data)
+
+from app.serializers import  UserSerializer
+class RegisterView(APIView):
+    def post(self,request):
+        serializer_instance=UserSerializer(data=request.data) #deserialization
+                                                               #conversion+validation
+        if serializer_instance.is_valid():
+            serializer_instance.save()
+            return Response(serializer_instance.data,status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer_instance.errors,status=status.HTTP_400_BAD_REQUEST)

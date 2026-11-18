@@ -6,7 +6,7 @@ class Movie(models.Model):
     title=models.CharField(max_length=30)
     director=models.CharField(max_length=30)
     language=models.CharField(max_length=30)
-    year=models.IntegerField
+    # year=models.IntegerField()
     rating=models.FloatField()
     runtime=models.IntegerField()
     image=models.ImageField(upload_to="movies",null=True,blank=True)

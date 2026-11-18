@@ -27,5 +27,7 @@ urlpatterns = [
     path('details/<int:pk>',views.EmployeeDetail.as_view()),
     path('delete/<int:pk>',views.EmployeeDelete.as_view()),
     path('update/<int:pk>',views.EmployeeUpdate.as_view()),
-    path('partial/<int:pk>',views.EmployeePartialUpdate.as_view())
+    path('partial/<int:pk>',views.EmployeePartialUpdate.as_view()),
+    path('search',views.SearchAPIView.as_view()),
+    path('register',views.RegisterView.as_view())
 ]
